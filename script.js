@@ -5,7 +5,7 @@ const suggestionList = document.getElementById('autocomplete-list');
 const btnPlanned = document.getElementById('add-planned');
 const btnVisited = document.getElementById('add-visited');
 
-// База данных разрешенных мест (можно расширять бесконечно)
+// База данных разрешенных мест
 const locationsDB = [
     "Алматы, Казахстан", "Астана, Казахстан", "Шымкент, Казахстан",
     "Токио, Япония", "Киото, Япония", "Нью-Йорк, США", 
@@ -16,13 +16,11 @@ const locationsDB = [
 
 let notes = JSON.parse(localStorage.getItem('geoNotes')) || [];
 
-// Управление доступностью кнопок
 function toggleButtons(isValid) {
     btnPlanned.disabled = !isValid;
     btnVisited.disabled = !isValid;
 }
 
-// Отслеживание ввода текста
 input.addEventListener('input', () => {
     const value = input.value.trim().toLowerCase();
     suggestionList.innerHTML = '';
@@ -33,7 +31,6 @@ input.addEventListener('input', () => {
         return;
     }
 
-    // Фильтруем базу данных совпадений
     const matches = locationsDB.filter(loc => loc.toLowerCase().includes(value));
 
     if (matches.length > 0) {
@@ -43,11 +40,10 @@ input.addEventListener('input', () => {
             div.className = 'suggestion-item';
             div.textContent = match;
             
-            // Клик по подсказке
             div.onclick = () => {
                 input.value = match;
                 suggestionList.style.display = 'none';
-                toggleButtons(true); // Разрешаем добавление
+                toggleButtons(true);
             };
             suggestionList.appendChild(div);
         });
@@ -55,30 +51,26 @@ input.addEventListener('input', () => {
         suggestionList.style.display = 'none';
     }
 
-    // Проверяем, ввёл ли пользователь точное имя из базы вручную
     const exactMatch = locationsDB.some(loc => loc.toLowerCase() === input.value.trim().toLowerCase());
     toggleButtons(exactMatch);
 });
 
-// Закрытие списка при клике вне его
 document.addEventListener('click', (e) => {
     if (e.target !== input) {
         suggestionList.style.display = 'none';
     }
 });
 
-// Добавление новой записи
 function addNote(type) {
     const text = input.value.trim();
     if (!text) return;
 
     notes.push({ text, type });
     input.value = '';
-    toggleButtons(false); // Снова блокируем кнопки
+    toggleButtons(false);
     saveAndRender();
 }
 
-// Отрендерить заметки
 function renderNotes(filter = 'all') {
     notesList.innerHTML = '';
     const filtered = notes.filter(n => filter === 'all' || n.type === filter);
