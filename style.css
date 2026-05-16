@@ -136,3 +136,64 @@ input {
     border-radius: 5px;
     cursor: pointer;
 }
+
+/* Контейнер для позиционирования */
+.search-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 25px; /* Увеличили отступ, чтобы кнопки не прилипали */
+}
+
+/* Убираем нижний маргин у инпута, так как он внутри контейнера */
+#place-input {
+    margin-bottom: 0;
+}
+
+/* Выпадающий список */
+.autocomplete-suggestions {
+    position: absolute;
+    top: 100%; /* Вешаем ровно под инпутом */
+    left: 0;
+    right: 0;
+    
+    /* Делаем фон непрозрачным в зависимости от темы, чтобы нижний текст не просвечивал */
+    background: var(--bg-color); 
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    
+    /* Поднимаем список над всеми остальными элементами на странице */
+    z-index: 9999; 
+    
+    display: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    animation: slideIn 0.2s ease forwards;
+}
+
+/* Элемент списка подсказок */
+.suggestion-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: background 0.2s;
+    text-align: left;
+}
+
+/* Подсветка при наведении */
+.suggestion-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .autocomplete-suggestions {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Стили для заблокированных кнопок */
+.btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none !important;
+}
