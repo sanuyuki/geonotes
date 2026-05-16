@@ -15,11 +15,15 @@
             <button id="theme-toggle" class="btn-icon">🌓</button>
         </header>
 
-        <section class="input-section">
-            <input type="text" id="place-input" placeholder="Введите страну, место или город...">
+	<section class="input-section">
+            <div class="search-container">
+                <input type="text" id="place-input" placeholder="Введите страну или город..." autocomplete="off">
+                <!-- Блок для выпадающих подсказок -->
+                <div id="autocomplete-list" class="autocomplete-suggestions"></div>
+            </div>
             <div class="controls">
-                <button id="add-planned" class="btn btn-blue">Хочу посетить</button>
-                <button id="add-visited" class="btn btn-green">Уже был</button>
+                <button id="add-planned" class="btn btn-blue" disabled>Хочу посетить</button>
+                <button id="add-visited" class="btn btn-green" disabled>Уже был</button>
             </div>
         </section>
 
