@@ -1,0 +1,138 @@
+:root {
+    --bg-color: #f4f4f4;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --text-color: #1a1a1a;
+    --accent-blue: #3498db;
+    --accent-green: #2ecc71;
+    --btn-black: #2c3e50;
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --card-bg: rgba(30, 30, 30, 0.8);
+    --text-color: #ffffff;
+    --btn-black: #f4f4f4;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Glassmorphism эффект */
+.input-section {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: transparent;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: transform 0.2s;
+}
+
+.btn:active { transform: scale(0.95); }
+.btn-blue { background-color: var(--accent-blue); }
+.btn-green { background-color: var(--accent-green); }
+.btn-icon { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    opacity: 0.6;
+    border-bottom: 2px solid transparent;
+}
+
+.filter-btn.active {
+    opacity: 1;
+    border-bottom: 2px solid var(--btn-black);
+}
+
+/* Анимация карточек */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.note-card {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.4s ease forwards;
+    box-shadow: var(--shadow);
+}
+
+.note-card.planned { border-left: 6px solid var(--accent-blue); }
+.note-card.visited { border-left: 6px solid var(--accent-green); }
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}

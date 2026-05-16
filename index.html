@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoNotes — Твой travel-планировщик</title>
+    <link rel="icon" href="img/logo.PNG">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>GeoNotes | Travel-планировщик</h1>
+            <button id="theme-toggle" class="btn-icon">🌓</button>
+        </header>
+
+        <section class="input-section">
+            <input type="text" id="place-input" placeholder="Введите страну, место или город...">
+            <div class="controls">
+                <button id="add-planned" class="btn btn-blue">Хочу посетить</button>
+                <button id="add-visited" class="btn btn-green">Уже был</button>
+            </div>
+        </section>
+
+        <nav class="filters">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="planned">Планирую</button>
+            <button class="filter-btn" data-filter="visited">Посещено</button>
+        </nav>
+
+        <main id="notes-list" class="notes-grid">
+            <!-- Заметки будут появляться здесь -->
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
